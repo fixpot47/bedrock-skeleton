@@ -1,0 +1,46 @@
+# Latest build failure
+Commit: fcdc968574643c8f8e4a399f58fb072275c3ab32
+Run: 39110713636
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Configure project :
+Fabric Loom: 1.17.21
+
+> Task :compileJava FAILED
+/home/runner/work/bedrock-skeleton/bedrock-skeleton/src/main/java/com/fixpot47/bs/HomingArrow.java:20: error: cannot find symbol
+        if (!level().isClientSide() && !this.inGround) {
+                                            ^
+  symbol: variable inGround
+/home/runner/work/bedrock-skeleton/bedrock-skeleton/src/main/java/com/fixpot47/bs/BedrockSkeletonMod.java:48: error: cannot find symbol
+        SpawnPlacements.register(BEDROCK_SKELETON, SpawnPlacements.Type.ON_GROUND,
+                                                                  ^
+  symbol:   variable Type
+  location: class SpawnPlacements
+2 errors
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/compilation-1792311320931.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/bedrock-skeleton/bedrock-skeleton/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /home/runner/work/bedrock-skeleton/bedrock-skeleton/src/main/java/com/fixpot47/bs/BedrockSkeletonMod.java:48: error: cannot find symbol
+          SpawnPlacements.register(BEDROCK_SKELETON, SpawnPlacements.Type.ON_GROUND,
+                                                                    ^
+    symbol:   variable Type
+    location: class SpawnPlacements
+  /home/runner/work/bedrock-skeleton/bedrock-skeleton/src/main/java/com/fixpot47/bs/HomingArrow.java:20: error: cannot find symbol
+          if (!level().isClientSide() && !this.inGround) {
+                                              ^
+    symbol: variable inGround
+  2 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 13s
+1 actionable task: 1 executed
