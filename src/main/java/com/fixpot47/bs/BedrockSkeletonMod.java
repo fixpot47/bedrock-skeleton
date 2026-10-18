@@ -1,7 +1,7 @@
 package com.fixpot47.bs;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -21,7 +21,7 @@ import net.minecraft.core.Registry;
 
 public final class BedrockSkeletonMod implements ModInitializer {
     public static final String MOD_ID = "bs";
-    private static ResourceLocation id(String path) { return ResourceLocation.fromNamespaceAndPath(MOD_ID, path); }
+    private static Identifier id(String path) { return Identifier.fromNamespaceAndPath(MOD_ID, path); }
     public static final EntityType<BedrockSkeleton> BEDROCK_SKELETON = Registry.register(
         BuiltInRegistries.ENTITY_TYPE, id("bedrock_skeleton"),
         EntityType.Builder.of(BedrockSkeleton::new, MobCategory.MONSTER).sized(0.6f, 1.99f)
@@ -50,7 +50,7 @@ public final class BedrockSkeletonMod implements ModInitializer {
         // A biome spawn weight of 20 relative to vanilla skeleton's typical 100.
         BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), MobCategory.MONSTER,
             BEDROCK_SKELETON, 20, 1, 2);
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS).register(tab -> tab.accept(SPAWN_EGG));
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(tab -> tab.accept(AUTOAIM_ARROW));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.SPAWN_EGGS).register(tab -> tab.accept(SPAWN_EGG));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT).register(tab -> tab.accept(AUTOAIM_ARROW));
     }
 }
