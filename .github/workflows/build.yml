@@ -48,3 +48,14 @@ jobs:
           name: bedrock-skeleton-26.3-jar
           path: build/libs/bedrock-skeleton-1.0.0.jar
           if-no-files-found: error
+      - name: Record successful build
+        if: success()
+        shell: bash
+        run: |
+          mkdir -p build-reports
+          printf 'BUILD SUCCESS\nCommit: %s\nRun: %s\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" > build-reports/latest.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add build-reports/latest.txt
+          git commit -m "ci: record successful build [skip ci]" || true
+          git push origin HEAD:main
