@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class BedrockSkeletonClient implements ClientModInitializer {
     @Override public void onInitializeClient() {
@@ -14,10 +14,10 @@ public class BedrockSkeletonClient implements ClientModInitializer {
         EntityRendererRegistry.register(BedrockSkeletonMod.ARROW_ENTITY, ArrowRenderer::new);
     }
     private static final class BedrockSkeletonRenderer extends SkeletonRenderer {
-        private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("bs", "textures/entity/bedrock_skeleton.png");
+        private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath("bs", "textures/entity/bedrock_skeleton.png");
         private BedrockSkeletonRenderer(EntityRendererProvider.Context context) {
             super(context);
         }
-        @Override public ResourceLocation getTextureLocation(SkeletonRenderState state) { return TEXTURE; }
+        @Override public Identifier getTextureLocation(SkeletonRenderState state) { return TEXTURE; }
     }
 }
