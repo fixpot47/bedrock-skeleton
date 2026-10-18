@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "bs",
+  "version": "${version}",
+  "name": "Bedrock Skeleton",
+  "description": "Adds a dangerous red-eyed skeleton and homing arrows.",
+  "authors": ["fixpot47"],
+  "environment": "*",
+  "entrypoints": {"main": ["com.fixpot47.bs.BedrockSkeletonMod"], "client": ["com.fixpot47.bs.BedrockSkeletonClient"]},
+  "depends": {"fabricloader": ">=0.19.5", "minecraft": "26.3", "java": ">=25", "fabric-api": "*"}
+}
