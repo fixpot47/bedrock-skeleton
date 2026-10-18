@@ -12,7 +12,6 @@ public class AutoaimArrowItem extends ArrowItem {
         HomingArrow arrow = new HomingArrow(BedrockSkeletonMod.ARROW_ENTITY, level);
         arrow.setOwner(shooter);
         arrow.setPos(shooter.getX(), shooter.getEyeY() - 0.1, shooter.getZ());
-        arrow.setPickupItemStack(ammo.copyWithCount(1));
         return arrow;
     }
 }
