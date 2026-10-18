@@ -17,7 +17,6 @@ public class BedrockSkeleton extends Skeleton {
             .add(Attributes.MOVEMENT_SPEED, 0.375);
     }
     // Unlike vanilla skeletons, this mob never ignites in daylight.
-    @Override protected boolean isSunBurnTick() { return false; }
     @Override protected void registerGoals() {
         super.registerGoals();
         // Replace the vanilla bow goal so shots are fired every 10 ticks.
