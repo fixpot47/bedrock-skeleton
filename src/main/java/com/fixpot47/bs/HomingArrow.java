@@ -17,7 +17,7 @@ public class HomingArrow extends Arrow {
     public void setTarget(LivingEntity target) { this.target = target; }
 
     @Override public void tick() {
-        if (!level().isClientSide() && !this.inGround) {
+        if (!level().isClientSide() && !this.isInGround()) {
             if (target == null || !target.isAlive() || target.isRemoved()) {
                 target = null;
                 var nearby = level().getEntitiesOfClass(LivingEntity.class,
