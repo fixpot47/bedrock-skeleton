@@ -2,13 +2,14 @@ name: Build Bedrock Skeleton
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'build-reports/**'
   workflow_dispatch:
-  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -19,8 +20,30 @@ jobs:
         with:
           gradle-version: '9.6.0'
       - name: Build mod
-        run: gradle build --stacktrace
+        id: compilation
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle build --console plain 2>&1 | tee build-output.log
+      - name: Save build failure report
+        if: failure() && steps.compilation.outcome == 'failure'
+        shell: bash
+        run: |
+          mkdir -p build-reports
+          {
+            echo "# Latest build failure"
+            echo "Commit: $GITHUB_SHA"
+            echo "Run: $GITHUB_RUN_ID"
+            echo ""
+            tail -n 320 build-output.log
+          } > build-reports/latest.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add build-reports/latest.txt
+          git commit -m "ci: record build diagnostics [skip ci]" || true
+          git push origin HEAD:main
       - uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: bedrock-skeleton-26.3-jar
           path: build/libs/bedrock-skeleton-1.0.0.jar
