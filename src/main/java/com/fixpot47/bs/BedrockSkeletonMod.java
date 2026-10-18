@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -45,7 +46,7 @@ public final class BedrockSkeletonMod implements ModInitializer {
     @Override public void onInitialize() {
         FabricDefaultAttributeRegistry.register(BEDROCK_SKELETON, BedrockSkeleton.createAttributes());
         // Darkness check is the same as for vanilla monsters. Not spawned in sunny areas.
-        SpawnPlacements.register(BEDROCK_SKELETON, SpawnPlacements.Type.ON_GROUND,
+        SpawnPlacements.register(BEDROCK_SKELETON, SpawnPlacementTypes.ON_GROUND,
             Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         // A biome spawn weight of 20 relative to vanilla skeleton's typical 100.
         BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), MobCategory.MONSTER,
